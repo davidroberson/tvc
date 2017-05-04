@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install --yes \
 WORKDIR /opt 
 RUN git clone https://github.com/cgrlab/tvc.git
 
+RUN cp tvc/tvc-5.2.2.tar.gz ./ 
 RUN tar -xvzf tvc-5.2.2.tar.gz
 
 ENV PATH=$PATH:opt/tvc-5.2.2/bin
