@@ -12,7 +12,9 @@ RUN apt-get update && apt-get install --yes \
     g++ \
     python-pip \ 
     python-dev \ 
-    libbz2-dev libncurses-dev libboost-math-dev \
+    libbz2-dev \
+    libncurses-dev \
+    libboost-math-dev \
     ibatlas-dev \
     liblapack-dev
     
