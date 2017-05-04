@@ -21,19 +21,19 @@ RUN apt-get update && apt-get install --yes \
     wget \
     aptitude
  
- RUN aptitude install -y \
+RUN aptitude install -y \
     libatlas-dev \
     liblapack-dev
 
- RUN wget updates.iontorrent.com/tvc_standalone/tvc-5.2.2.tar.gz
+RUN wget updates.iontorrent.com/tvc_standalone/tvc-5.2.2.tar.gz
  
-RUN TVC_VERSION=tvc-5.2.2
+RUN TVC_VERSION=tvc-5.2.2 && \
+BUILD_ROOT_DIR=`mktemp -d` && \
+cp $TVC_VERSION.tar.gz $BUILD_ROOT_DIR
 
-RUN BUILD_ROOT_DIR=`mktemp -d`
-RUN cp $TVC_VERSION.tar.gz $BUILD_ROOT_DIR
-RUN DISTRIBUTION_CODENAME=`lsb_release -is`_`lsb_release -rs`_`uname -m`
-RUN TVC_INSTALL_DIR=$BUILD_ROOT_DIR/$TVC_VERSION-$DISTRIBUTION_CODENAME-binary
-RUN mkdir -p $TVC_INSTALL_DIR/bin/
+RUN DISTRIBUTION_CODENAME=`lsb_release -is`_`lsb_release -rs`_`uname -m` && \
+TVC_INSTALL_DIR=$BUILD_ROOT_DIR/$TVC_VERSION-$DISTRIBUTION_CODENAME-binary && \
+mkdir -p $TVC_INSTALL_DIR/bin/
  
 
 # ENV PATH=$PATH:opt/tvc-5.2.2/bin
