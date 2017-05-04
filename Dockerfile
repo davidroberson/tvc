@@ -14,9 +14,7 @@ RUN apt-get update && apt-get install --yes \
     python-dev \ 
     libbz2-dev \
     libncurses-dev \
-    libboost-math-dev \
-    ibatlas-dev \
-    liblapack-dev
+    libboost-math-dev 
     
 WORKDIR /opt 
 RUN git clone https://github.com/cgrlab/tvc.git
