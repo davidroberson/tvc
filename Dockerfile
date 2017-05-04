@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install --yes \
     wget \
     aptitude
  
- RUN aptitude install --yes \
+ RUN aptitude install -y \
     libatlas-dev \
     liblapack-dev
 
