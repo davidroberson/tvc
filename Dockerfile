@@ -1,6 +1,8 @@
 # Set the base image to Ubuntu
 FROM ubuntu:14.04
 
+WORKDIR /opt 
+
 # Update the repository sources list
 RUN apt-get update && apt-get install --yes \
     build-essential \
@@ -10,16 +12,19 @@ RUN apt-get update && apt-get install --yes \
     vim-common \
     git \
     g++ \
+    cmake \
     python \ 
     python-dev \ 
     libbz2-dev \
     libncurses-dev \
-    libboost-math-dev 
-    
-WORKDIR /opt 
-RUN git clone https://github.com/cgrlab/tvc.git
+    libboost-math-dev \
+    wget \
+    aptitude
+ 
+ RUN aptitude install --yes \
+    libatlas-dev \
+    liblapack-dev
 
-RUN cp tvc/tvc-5.2.2.tar.gz ./ 
-RUN tar -xvzf tvc-5.2.2.tar.gz
+ RUN wget updates.iontorrent.com/tvc_standalone/tvc-5.2.2.tar.gz
 
-ENV PATH=$PATH:opt/tvc-5.2.2/bin
+# ENV PATH=$PATH:opt/tvc-5.2.2/bin
