@@ -10,7 +10,13 @@ RUN apt-get update && apt-get install --yes \
     vim-common \
     git \
     g++ \
-    python
+    python \ 
+    python-dev \ 
+    libbz2-dev \
+    libncurses-dev \
+    libboost-math-dev \
+    ibatlas-dev \
+    liblapack-dev
     
 WORKDIR /opt 
 RUN git clone https://github.com/cgrlab/tvc.git
