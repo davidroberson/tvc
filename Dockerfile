@@ -31,7 +31,7 @@ RUN mkdir -p tvc_522_main/bin/
 
 # 4. build armadillo
 RUN wget http://updates.iontorrent.com/updates/software/external/armadillo-4.600.1.tar.gz && \
-tar xvzf armadillo-4.600.1.tar.gz && \
+tar -xvzf armadillo-4.600.1.tar.gz && \
 cd armadillo-4.600.1/ && \
 sed -i 's:^// #define ARMA_USE_LAPACK$:#define ARMA_USE_LAPACK:g' include/armadillo_bits/config.hpp && \
 sed -i 's:^// #define ARMA_USE_BLAS$:#define ARMA_USE_BLAS:g'     include/armadillo_bits/config.hpp && \
@@ -40,7 +40,7 @@ make -j4
 
 # 5. build bamtools
 RUN wget updates.iontorrent.com/updates/software/external/bamtools-2.4.0.20150702+git15eadb925f.tar.gz && \
-tar xvzf bamtools-2.4.0.20150702+git15eadb925f.tar.gz && \
+tar -xvzf bamtools-2.4.0.20150702+git15eadb925f.tar.gz && \
 mkdir bamtools-2.4.0.20150702+git15eadb925f-build && \
 cd bamtools-2.4.0.20150702+git15eadb925f-build && \
 cmake ../bamtools-2.4.0.20150702+git15eadb925f -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo && \
@@ -67,6 +67,6 @@ cd tvc-5.2.2-build && \
 cmake /opt/tvc-5.2.2 -DCMAKE_INSTALL_PREFIX:PATH=/opt/tvc_522_main/bin/ -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo && \
 make -j4 install
 
-# set env variable
+# update PATH variable
 
-ENV TVC_ROOT_DIR=/opt/tvc_522_main
+ENV PATH=$PATH:/opt/tvc_522_main/bin
