@@ -60,7 +60,7 @@ RUN wget --no-check-certificate https://github.com/samtools/samtools/archive/1.2
 tar xvzf samtools-1.2.tar.gz && \
 cd samtools-1.2 && \
 make -j4 && \
-cp samtools tvc_522_main/bin/
+cp samtools ../
 
 # build TVC
 RUN tar -xvzf tvc-5.2.2.tar.gz && \
