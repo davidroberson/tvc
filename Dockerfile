@@ -64,7 +64,7 @@ cp samtools /opt/tvc_522_main/bin/
 RUN tar -xvzf tvc-5.2.2.tar.gz && \
 mkdir tvc-5.2.2-build && \
 cd tvc-5.2.2-build && \
-cmake /opt/tvc-5.2.2 -DCMAKE_INSTALL_PREFIX:PATH=/opt/tvc_522_main/bin/ -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo && \
+cmake /opt/tvc-5.2.2 -DCMAKE_INSTALL_PREFIX:PATH=/opt/tvc_522_main/ -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo && \
 make -j4 install
 
 # update PATH variable
