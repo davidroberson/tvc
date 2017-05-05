@@ -62,6 +62,21 @@ cd samtools-1.2 && \
 make -j4 && \
 cp samtools tvc_522_main/bin/
 
+# build TVC
+RUN tar -xvzf tvc-5.2.2.tar.gz && \
+mkdir tvc-5.2.2-build && \
+cd tvc-5.2.2-build && \
+cmake ../tvc-5.2.2 -DCMAKE_INSTALL_PREFIX:PATH=../ -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo && \
+make -j4 install
+
+# 11. create binary package
+tar cvzf $TVC_VERSION-$DISTRIBUTION_CODENAME-binary.tar.gz -C $BUILD_ROOT_DIR $TVC_VERSION-$DISTRIBUTION_CODENAME-binary
+
+######################################################################################
+
+# 12.1 Either use the TVC version from the (temporary) TVC_INSTALL_DIR directory
+
+#TVC_ROOT_DIR=$TVC_INSTALL_DIR
 
 
 
