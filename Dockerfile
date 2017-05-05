@@ -46,7 +46,6 @@ cd bamtools-2.4.0.20150702+git15eadb925f-build && \
 cmake ../bamtools-2.4.0.20150702+git15eadb925f -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo && \
 make -j4
 
-
 # 7. build htslib
 RUN wget --no-check-certificate https://github.com/samtools/htslib/archive/1.2.1.tar.gz -O htslib-1.2.1.tar.gz && \
 tar xvzf htslib-1.2.1.tar.gz && \
@@ -54,31 +53,20 @@ ln -s htslib-1.2.1 htslib && \
 cd htslib-1.2.1 && \
 make -j4
 
-
 # 8. build samtools
 RUN wget --no-check-certificate https://github.com/samtools/samtools/archive/1.2.tar.gz -O samtools-1.2.tar.gz && \
 tar xvzf samtools-1.2.tar.gz && \
 cd samtools-1.2 && \
 make -j4 && \
-cp samtools ../
+cp samtools /opt/tvc_522_main/bin/
 
 # build TVC
 RUN tar -xvzf tvc-5.2.2.tar.gz && \
 mkdir tvc-5.2.2-build && \
 cd tvc-5.2.2-build && \
-cmake ../tvc-5.2.2 -DCMAKE_INSTALL_PREFIX:PATH=../ -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo && \
+cmake /opt/tvc-5.2.2 -DCMAKE_INSTALL_PREFIX:PATH=/opt/tvc_522_main/bin/ -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo && \
 make -j4 install
 
-# 11. create binary package
-tar cvzf $TVC_VERSION-$DISTRIBUTION_CODENAME-binary.tar.gz -C $BUILD_ROOT_DIR $TVC_VERSION-$DISTRIBUTION_CODENAME-binary
+# set env variable
 
-######################################################################################
-
-# 12.1 Either use the TVC version from the (temporary) TVC_INSTALL_DIR directory
-
-#TVC_ROOT_DIR=$TVC_INSTALL_DIR
-
-
-
-
-# ENV PATH=$PATH:opt/tvc-5.2.2/bin
+ENV TVC_ROOT_DIR=/opt/tvc_522_main
