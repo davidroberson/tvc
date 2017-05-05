@@ -27,7 +27,7 @@ RUN aptitude install -y \
 
 RUN wget updates.iontorrent.com/tvc_standalone/tvc-5.2.2.tar.gz
  
-RUN mkdir temp_build_dir && \
+RUN mkdir tmp_build_dir && \
     cp tvc-5.2.2.tar.gz tmp_build_dir
 
 RUN DISTRIBUTION_CODENAME=`lsb_release -is`_`lsb_release -rs`_`uname -m` && \
